@@ -1,37 +1,72 @@
 from pwn import *
-# Para debug del socket utilizamos:
-# context.log_level = 'debug'
-# Analice las diferencias entre usar o no el debug
-# Nos conectamos utilizando remote
-con = remote("163.10.20.26", 10002)
-# para quitar el texto que no nos interesa (banner),
-# leemos hasta justo antes de la cuenta, es decir, hasta ":\n"
 
-con.recvuntil(b"flag!:\n") 
+# Script para resolver múltiples operaciones aritméticas hasta obtener la flag.
+# Ajusta context.log_level = 'debug' si querés ver el tráfico completo.
+context.log_level = 'info'
 
-# Leemos hasta el salto de línea, la cuenta deseada
-cuenta = con.recvline(timeout=0.2)
-print(type(cuenta))
-print(cuenta)
-# Pasamos los bytes a string, para poder realizar la cuenta
-cuenta = cuenta.decode().split()
+HOST = "163.10.20.26"
+PORT = 10002
 
-# Convierto a entero los operandos
-op1 = int(cuenta[0])
-op2 = int(cuenta[2])
 
-# El operador es el segundo elemento de la lista
-operador = cuenta[1]
-# Sumo multiplico o resto según el operador
-if operador == '-':
- resultado = op1 - op2
-elif operador == '*':
- resultado = op1 * op2
-else:
-    resultado = op1 + op2
-# Enviamos la respuesta de la cuenta, como bytes:
-con.sendline((str(resultado) + "\n").encode())
-# Imprimimos toda la respuesta del servidor
-print(con.recvall(timeout=0.3).decode())
+def es_expr(line: str) -> bool:
+    try:
+        parts = line.strip().split()
+        if len(parts) < 3:
+            return False
+        int(parts[0]); int(parts[2])
+        return parts[1] in ['+','-','*']
+    except Exception:
+        return False
 
-#CONSULTAR, PORQUE AHORA ESTO ANDA RAPIDO? A DIFERENCIA DEL DE ANTES
+
+def resolver(parts):
+    a = int(parts[0]); op = parts[1]; b = int(parts[2])
+    if op == '+':
+        return a + b
+    if op == '-':
+        return a - b
+    if op == '*':
+        return a * b
+    raise ValueError(f"Operador no soportado: {op}")
+
+
+def main():
+    r = remote(HOST, PORT)
+    operaciones = 0
+    while True:
+        try:
+            line = r.recvline(timeout=3)
+        except EOFError:
+            print("[!] El servidor cerró la conexión (EOF).")
+            break
+        if not line:
+            print("[!] Fin de datos (línea vacía).")
+            break
+        txt = line.decode(errors='ignore').strip()
+        print(f"[SERVIDOR] {txt}")
+        low = txt.lower()
+        if 'flag' in low and ('{' in txt or 'ctf' in low):
+            print("[FLAG]", txt)
+            break
+        if es_expr(txt):
+            parts = txt.split()
+            try:
+                res = resolver(parts)
+            except Exception as e:
+                print(f"[!] Error resolviendo expresión: {e}")
+                break
+            operaciones += 1
+            print(f"[ENVÍO #{operaciones}] {res}")
+            r.sendline(str(res).encode())
+    r.close()
+    print(f"[+] Total operaciones resueltas: {operaciones}")
+
+
+if __name__ == '__main__':
+    main()
+
+# Notas:
+# - Se eliminó recvall() para no consumir líneas futuras.
+# - Se procesa cada línea en orden; si es expresión se responde.
+# - Cuando aparece algo que parece la flag se corta el loop.
+# - Aumenta context.log_level a 'debug' si necesitás más traza.

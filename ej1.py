@@ -20,6 +20,8 @@ cuenta = cuenta.split() # ['297', '+', '155']
 op1 = int(cuenta[0])
 op2 = int(cuenta[2])
 operador = cuenta[1]
+
+
 # Sumo multiplico o resto según el operador
 if operador == '+':
  resultado = op1 + op2
