@@ -93,17 +93,33 @@ print("Texto desencriptado:", braille_to_text(mensaje_encriptado))
 
 #ejercicio g
 
-import re
+import base64
 
-image_path = os.path.join(os.getcwd(), "Practica1/merged_image.jpg")
+mensaje = "083  085  078  055  085  071  057  114  121  085  053  106  084  050  081  120  098  109  100  102  084  106  066  102  077  050  053  068  099  110  120  119  086  068  082  057"
 
-with open(image_path, "rb") as f:
-    data = f.read()
+# Tomamos cada bloque de 3 dígitos y quitamos espacios
+mensaje = mensaje.split()
 
-m = re.search(rb'IC\{[^}\r\n]{1,200}\}', data)
-if m:
-    flag = m.group(0).decode("utf-8", errors="ignore")
-    print(flag)
+# Convertimos cada número (en decimal) a carácter ASCII
+mensaje_desencriptado = ''.join(chr(int(i)) for i in mensaje)
+print("Mensaje desencriptado:", mensaje_desencriptado)
+
+# Decodificamos el base64
+try:
+    decoded_bytes = base64.b64decode(mensaje_desencriptado + "=")
+
+    # Mostrar en hex
+    print("En hex:", decoded_bytes.hex())
+
+    # Si querés, probá interpretarlo como ASCII (en vez de UTF-8)
+    try:
+        print("En ASCII:", decoded_bytes.decode('latin-1'))
+    except:
+        print("No es ASCII legible, solo bytes.")
+except Exception as e:
+    print("No era base64 válido:", e)
+
+
 #ejercicio 2
 
 conect = remote("ic.catedras.linti.unlp.edu.ar", 11002)
