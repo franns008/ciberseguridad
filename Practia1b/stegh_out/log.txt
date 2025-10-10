@@ -1,0 +1,80 @@
+== Probando: [muy fácil.] ==
+wrote extracted data to "flag.txt".
+=> exit ok para [muy fácil.]
+
+== Probando: [muy facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muy facil] (rc=1)
+
+== Probando: [facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [facil] (rc=1)
+
+== Probando: [muyfacil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfacil] (rc=1)
+
+== Probando: [muy fácil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muy fácil] (rc=1)
+
+== Probando: [muyfácil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfácil] (rc=1)
+
+== Probando: [fácil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [fácil] (rc=1)
+
+== Probando: [facíl] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [facíl] (rc=1)
+
+== Probando: [muy_facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muy_facil] (rc=1)
+
+== Probando: [muy-facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muy-facil] (rc=1)
+
+== Probando: [MUY FACIL] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [MUY FACIL] (rc=1)
+
+== Probando: [Muy Facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [Muy Facil] (rc=1)
+
+== Probando: [muy  facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muy  facil] (rc=1)
+
+== Probando: [muy    facil] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muy    facil] (rc=1)
+
+== Probando: [muyfacíl] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfacíl] (rc=1)
+
+== Probando: [muyfac1l] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfac1l] (rc=1)
+
+== Probando: [muyfac1l ] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfac1l ] (rc=1)
+
+== Probando: [muyfacil!] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfacil!] (rc=1)
+
+== Probando: [muyfacil123] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfacil123] (rc=1)
+
+== Probando: [muyfacil.] ==
+steghide: could not extract any data with that passphrase!
+=> exit error para [muyfacil.] (rc=1)
+
