@@ -1,0 +1,12 @@
+services:
+  # Sistema operativo vulnerable con Lynis incluido
+  vulnerable_os:
+    build: . # Usa el Dockerfile en el directorio actual
+    container_name: vulnerable_os_target
+    hostname: linux-target 
+    privileged: true 
+    ports:
+      - "2222:22"
+    volumes:
+      - ./reports:/var/log/lynis-reports:rw # Guardar reportes de Lynis
+    restart: "unless-stopped"
