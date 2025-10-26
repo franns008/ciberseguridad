@@ -1,0 +1,39 @@
+=== RESPONSE (2025-10-24T15:04:10.783370 UTC) ===
+URL: http://45.170.252.24:8080//api/submit
+Status: 200 OK
+Elapsed: 0:00:00.270720
+Encoding: utf-8
+Content-Length header: 51
+---- Response headers ----
+Server: gunicorn
+Date: Fri, 24 Oct 2025 15:04:07 GMT
+Connection: close
+Content-Type: application/json
+Content-Length: 51
+---- Cookies ----
+{}
+---- History (redirects) ----
+No redirects
+---- Response body (text, truncated to 10k chars) ----
+{"post_id":"b81b1463-e1f3-4f7e-8028-a56fe0d852fc"}
+
+---- Response body (raw bytes, first 200 bytes hex) ----
+7b22706f73745f6964223a2262383162313436332d653166332d346637652d383032382d613536666530643835326663227d0a
+---- JSON parse attempt ----
+{
+  "post_id": "b81b1463-e1f3-4f7e-8028-a56fe0d852fc"
+}
+---- Request (what was sent) ----
+Request method: POST
+Request url: http://45.170.252.24:8080//api/submit
+Request headers:
+  User-Agent: PrivatePost 1.0
+  Accept-Encoding: gzip, deflate, zstd
+  Accept: */*
+  Connection: keep-alive
+  Content-Length: 61
+  Content-Type: application/json
+Request body (if any, as bytes / text):
+b'{"title": "test-recipient", "content": "prueba desde script"}'
+
+
