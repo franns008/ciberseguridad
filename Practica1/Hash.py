@@ -30,7 +30,7 @@ if hash_sha512 == resumen_hash:
 print("Hash SHA-512:", hash_sha512)
 
 #ejercicio 6
-from pwn import *
+https://ucabrera.github.io/aLinkToThePast/flag.txt
 HOST = "ic.catedras.linti.unlp.edu.ar"
 PORT = 11006
 con = remote(HOST, PORT)
