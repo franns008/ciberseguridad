@@ -235,7 +235,9 @@ def get_error_text_from_sap_gui(transaction_code, log_filename_func):
         - If no DUMP is found, checks the status bar for error messages.
         - All exceptions are logged, and the function is robust to most SAP GUI scripting errors.
     """
-    """Obtiene el texto de error directamente de la interfaz de SAP GUI"""
+    """
+    Obtiene el texto de error directamente de la interfaz de SAP GUI
+    """
     # (Implementación sin cambios)
     global ERRORS_DETECTED, DUMP_ERRORS, SBAR_DIALOG_ERRORS; ERRORS_DETECTED = True
     capture_screen(f"{transaction_code}_error_detallado", log_filename_func)
@@ -396,7 +398,9 @@ def volver_pagina_principal():
     Returns:
         bool: Always returns True.
     """
-    """Intenta volver a SAP Easy Access (INACTIVA)."""
+    """
+    Intenta volver a SAP Easy Access (INACTIVA).
+    """
     # (Implementación sin cambios, sigue INACTIVA)
     global log_filename; msg_prefix = "volver_pagina_principal (INACTIVA):"
     if log_filename: log_message(log_filename, f"{msg_prefix} Llamada pero acciones desactivadas.")
@@ -555,7 +559,8 @@ def show_instructions_popup():
     Logs:
         - Logs the display of instructions, user actions, timeouts, and any errors encountered.
     """
-    """Muestra un popup con las instrucciones paso a paso"""
+    """
+    Muestra un popup con las instrucciones paso a paso"""
     # (Implementación sin cambios)
     global log_filename; log_message(log_filename, "Mostrando instrucciones..."); print("Mostrando instrucciones...")
     dialog_result = {"continue": False, "exit": False}; root = None
